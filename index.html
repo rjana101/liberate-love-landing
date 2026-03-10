@@ -1,0 +1,432 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Liberate.Love // Manifesto</title>
+    
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet" vid="7">
+
+    <style vid="8">
+        :root {
+            --c-text: rgba(255, 250, 240, 0.9);
+            --c-text-dim: rgba(255, 250, 240, 0.4);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-mono: 'Space Mono', monospace;
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #120A07; 
+            color: var(--c-text);
+            font-family: var(--font-serif);
+            overflow-x: hidden;
+            overscroll-behavior-y: none;
+            
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        
+        #webgl-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        
+        .ui-frame {
+            position: fixed;
+            z-index: 100;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--c-text-dim);
+            pointer-events: none;
+            mix-blend-mode: difference;
+        }
+
+        .frame-top-left { top: 2rem; left: 2rem; }
+        .frame-top-right { top: 2rem; right: 2rem; text-align: right; }
+        .frame-bottom-left { bottom: 2rem; left: 2rem; }
+        .frame-bottom-right { bottom: 2rem; right: 2rem; text-align: right; }
+
+        .blinking-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--c-text-dim);
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        
+        main {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            
+            scroll-snap-align: center;
+        }
+
+        
+        h1, h2, p {
+            font-weight: 300;
+            line-height: 1.4;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .manifesto-title {
+            font-size: clamp(3rem, 6vw, 6rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .stanza {
+            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stanza em {
+            font-style: italic;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .divider {
+            margin: 3rem auto;
+            color: var(--c-text-dim);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            letter-spacing: 0.5em;
+        }
+
+        .outro {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            letter-spacing: 0.05em;
+            margin-top: 4rem;
+        }
+
+        .date-reveal {
+            display: block;
+            margin-top: 2rem;
+            font-family: var(--font-mono);
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            letter-spacing: 0.2em;
+            color: white;
+            font-weight: 700;
+        }
+
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 1.8s var(--ease-out), transform 1.8s var(--ease-out);
+            will-change: opacity, transform;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .delay-1 { transition-delay: 0.3s; }
+        .delay-2 { transition-delay: 0.6s; }
+
+        
+        @media (max-width: 768px) {
+            .ui-frame { display: none; } 
+            .stanza { text-align: left; padding: 0 1rem; }
+            .manifesto-title { text-align: left; width: 100%; padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body vid="9">
+
+    
+
+
+    
+    <canvas id="webgl-container" vid="10"></canvas>
+
+    
+    <main vid="11">
+        <section vid="12">
+            <h1 class="manifesto-title reveal" vid="13">Liberate.Love</h1>
+            <div class="divider reveal delay-1" vid="14">—</div>
+            <p class="stanza reveal delay-2" vid="15">We forgot how to hold each other.</p>
+        </section>
+
+        <section vid="16">
+            <p class="stanza reveal" vid="17">We forgot how to listen.</p>
+        </section>
+
+        <section vid="18">
+            <p class="stanza reveal" vid="19">We forgot that in the space between two people who love each other, there is an intelligence.</p>
+        </section>
+
+        <section vid="20">
+            <p class="stanza reveal" vid="21">It knows what you need.<br vid="22">It knows what they need.<br vid="23">It knows how to come home.</p>
+        </section>
+
+        <section vid="24">
+            <p class="stanza reveal" vid="25">This is a return to that field.</p>
+            <p class="stanza reveal delay-1" style="margin-top: 2rem;" vid="26">To the self, connected.<br vid="27">To the other, truly seen.</p>
+        </section>
+
+        <section vid="28">
+            <p class="stanza reveal" vid="29">It requires a radical opening.<br vid="30">A willingness to be moved by what lives between you.</p>
+        </section>
+
+        <section vid="31">
+            <p class="stanza reveal" vid="32">Your legacy of love is here.</p>
+            <p class="stanza reveal delay-1" style="margin-top: 2rem;" vid="33">Remember the way.</p>
+        </section>
+
+        <section vid="34">
+            <h2 class="manifesto-title reveal" vid="35">Liberate.Love</h2>
+            <span class="date-reveal reveal delay-1" vid="36">5.28.2026</span>
+            <p class="outro reveal delay-2" style="font-size: 1rem; margin-top: 3rem; opacity: 0.6;" vid="37">We'll see you inside.</p>
+        </section>
+    </main>
+
+    <script vid="38">
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    
+                    
+                } else {
+                    
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        
+        window.addEventListener('scroll', () => {
+            const indicator = document.getElementById('scroll-indicator');
+            if(window.scrollY > 100) {
+                indicator.innerHTML = "READING<br>...";
+            } else {
+                indicator.innerHTML = "SCROLL TO INITIATE<br>↓";
+            }
+        });
+
+        
+        
+        
+        const canvas = document.getElementById('webgl-container');
+        const gl = canvas.getContext('webgl');
+
+        if (!gl) {
+            console.error('WebGL not supported');
+        }
+
+        
+        const vsSource = `
+            attribute vec4 aVertexPosition;
+            void main() {
+                gl_Position = aVertexPosition;
+            }
+        `;
+
+        
+        const fsSource = `
+            precision highp float;
+            
+            uniform vec2 u_resolution;
+            uniform float u_time;
+            uniform float u_scroll;
+
+            // Colors extracted precisely from reference
+            vec3 c_dark = vec3(0.07, 0.04, 0.03);  // Deep muddy abyss at bottom
+            vec3 c_rust = vec3(0.60, 0.24, 0.13);  // Intense burnt rust/orange
+            vec3 c_light = vec3(0.88, 0.92, 0.93); // Icy pale blue/grey at top
+
+            // Classic 2D random noise for grain
+            float random(vec2 st) {
+                return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+            }
+
+            void main() {
+                // Normalize pixel coordinates (from 0 to 1)
+                vec2 st = gl_FragCoord.xy / u_resolution.xy;
+                
+                // Parallax effect: Shift the gradient slightly based on scroll
+                // so the user "moves through" the atmosphere
+                float scrollOffset = u_scroll * 0.15;
+                vec2 uv = st;
+                uv.y += scrollOffset;
+
+                // Create organic, warped horizontal bands
+                // The sine wave adds the subtle unevenness seen in the reference
+                float wave = sin(uv.x * 2.5 + u_time * 0.2) * 0.08;
+                float y = uv.y + wave;
+
+                // Map colors to smooth transitions (Rothko effect)
+                // Dark bottom to rust middle
+                vec3 color = mix(c_dark, c_rust, smoothstep(-0.2, 0.5, y));
+                // Rust middle to icy top
+                color = mix(color, c_light, smoothstep(0.4, 1.2, y));
+
+                // Add Heavy Cinematic Grain
+                // Time varies to make the grain crawl like actual 35mm film
+                float noise = random(st + fract(u_time * 0.1));
+                
+                // Grain intensity (more visible in dark/mid tones)
+                float grainAmount = mix(0.18, 0.08, y);
+                
+                // Additive noise with a slight color tint shifting towards brown
+                color += (noise - 0.5) * grainAmount * vec3(1.0, 0.9, 0.8);
+
+                // Subtle vignette to focus center
+                vec2 center = vec2(0.5, 0.5);
+                float dist = distance(st, center);
+                color *= smoothstep(0.8, 0.2, dist * 0.6);
+
+                gl_FragColor = vec4(color, 1.0);
+            }
+        `;
+
+        
+        function loadShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+
+        const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
+        const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+        const shaderProgram = gl.createProgram();
+        gl.attachShader(shaderProgram, vertexShader);
+        gl.attachShader(shaderProgram, fragmentShader);
+        gl.linkProgram(shaderProgram);
+
+        if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+            console.error('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shaderProgram));
+        }
+
+        const programInfo = {
+            program: shaderProgram,
+            attribLocations: {
+                vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
+            },
+            uniformLocations: {
+                resolution: gl.getUniformLocation(shaderProgram, 'u_resolution'),
+                time: gl.getUniformLocation(shaderProgram, 'u_time'),
+                scroll: gl.getUniformLocation(shaderProgram, 'u_scroll'),
+            },
+        };
+
+        
+        const positions = [
+             1.0,  1.0,
+            -1.0,  1.0,
+             1.0, -1.0,
+            -1.0, -1.0,
+        ];
+        const positionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+        let startTime = Date.now();
+        let scrollY = 0;
+
+        
+        window.addEventListener('scroll', () => {
+            
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            scrollY = window.scrollY / maxScroll;
+        });
+
+        function render() {
+            
+            const displayWidth = window.innerWidth;
+            const displayHeight = window.innerHeight;
+
+            if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+                canvas.width = displayWidth;
+                canvas.height = displayHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            }
+
+            gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+
+            gl.useProgram(programInfo.program);
+
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, 2, gl.FLOAT, false, 0, 0);
+            gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+
+            
+            gl.uniform2f(programInfo.uniformLocations.resolution, canvas.width, canvas.height);
+            gl.uniform1f(programInfo.uniformLocations.time, (Date.now() - startTime) * 0.001);
+            gl.uniform1f(programInfo.uniformLocations.scroll, scrollY);
+
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+            requestAnimationFrame(render);
+        }
+
+        requestAnimationFrame(render);
+    </script>
+
+</body></html>
